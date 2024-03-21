@@ -1,0 +1,21 @@
+{
+  "name": "ujed_api",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "aplicacion para el manejo de datos de las diferentes carreras de la UJED",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon src/index.js"
+  },
+  "keywords": [
+    "UJED"
+  ],
+  "author": "Juan Pablo Jurado",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.5",
+    "express": "^4.19.1",
+    "mysql2": "^3.9.2",
+    "nodemon": "^3.1.0"
+  }
+}
