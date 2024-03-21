@@ -1,3 +1,6 @@
+//En este archivo se obtienen las variables de entorno y se configuran
+//para su uso en la app
+
 import {config} from 'dotenv'
 config()
 

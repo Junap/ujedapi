@@ -1,3 +1,5 @@
+//Enrutador principal del servidor
+
 import rutasCarreras from './routes/carreras.routes.js'
 import rutasAlumnos from './routes/alumnos.routes.js'
 import express from 'express'
