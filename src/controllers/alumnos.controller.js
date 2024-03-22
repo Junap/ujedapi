@@ -5,7 +5,7 @@ export const todosAlumnos = async (req, res) => {
         const [result] = await pool.query('SELECT * FROM alumnos')
         res.json(result)
     } catch (error) {
-        res.send(500).json({ "Error": ` ${error}` })
+        res.status(500).json({ "Error": ` ${error}` })
     }
 
 }
@@ -69,13 +69,13 @@ export const eliminarAlumno = async (req, res) => {
         const { idalumno } = req.body
         let [result] = await pool.query(`DELETE FROM alumnos WHERE idalumno = ?`,[ idalumno ])
         if(result.affectedRows >0){
-            res.json({"Mensaje: ":` Alumn@ eliminad@ con Exito!`})
+            res.json({"Mensaje: ":` Alumno eliminado con Exito!`})
         }
         else{
             res.json({"Mensaje: ":` No existe el alumno con id: ${idalumno}`})
         }
     } catch (error) {
-        res.send(500).json({ "Error": ` ${error}` })
+        res.status(500).json({ "Error": ` ${error}` })
     }
 
 }

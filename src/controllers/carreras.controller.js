@@ -5,7 +5,7 @@ export const todasCarreras = async (req, res) => {
         const [result] = await pool.query('SELECT * FROM carreras')
         res.json(result)
     } catch (error) {
-        res.send(500).json({ "Error": ` ${error}` })
+        res.status(500).json({ "Error": ` ${error}` })
     }
 
 }
@@ -29,7 +29,7 @@ export const insertarCarrera = async (req, res) => {
         })
     } catch (error) {
         //Manejo de otros errores
-        return res.sendStatus(500).json({ "Error": ` ${error}` })
+        return res.status(500).json({ "Error": ` ${error}` })
     }
 
 }
@@ -55,7 +55,7 @@ export const actualizarCarrera = async (req, res) => {
             res.json({ "Mensaje: ": ` No existe el registro ${idc}` })
         }
     } catch (error) {
-        res.send(500).json({ "Error": ` ${error}` })
+        res.status(500).json({ "Error": ` ${error}` })
     }
 
 }
@@ -71,7 +71,7 @@ export const eliminarCarrera = async (req, res) => {
             res.json({ "Mensaje: ": ` No existe la carrera con id: ${idc}` })
         }
     } catch (error) {
-        res.send(500).json({ "Error": ` ${error}` })
+        res.status(500).json({ "Error": ` ${error}` })
     }
 
 }
