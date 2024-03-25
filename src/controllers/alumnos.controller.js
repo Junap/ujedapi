@@ -1,5 +1,6 @@
 import { pool } from '../db.js'
 
+//Seleccionar todos los alumnos
 export const todosAlumnos = async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM alumnos')
@@ -9,7 +10,22 @@ export const todosAlumnos = async (req, res) => {
     }
 
 }
+//Seleccionar un solo alumno
+export const unAlumno = async (req, res) => {
+    try {
+       const { idalumno } = req.body;
+        const [result] = await pool.query('SELECT * FROM alumnos WHERE idcarrera = ?',[idalumno])
+        if (result.length===0){
+            return res.status(400).json({ "Error": `El alumno no existe.` })
+        }
+        res.json(result)
+    } catch (error) {
+        return res.status(500).json({ "Error": ` ${error}` })
+    }
 
+}
+
+//Insertar un alumno
 export const insertarAlumno = async (req, res) => {
     try {
         const { idcarrera, semestre, matricula, nombre, correo, telefono, horario } = req.body
@@ -39,6 +55,7 @@ export const insertarAlumno = async (req, res) => {
 
 }
 
+//Actualizar los datos de un alumno
 export const actualizarAlumno = async (req, res) => {
     try {
         const {idalumno, idcarrera, semestre, matricula, nombre, correo, telefono, horario } = req.body
@@ -64,6 +81,7 @@ export const actualizarAlumno = async (req, res) => {
 
 }
 
+//Eliminar un alumno
 export const eliminarAlumno = async (req, res) => {
     try {
         const { idalumno } = req.body

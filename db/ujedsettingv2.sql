@@ -41,15 +41,6 @@ CREATE TABLE `alumnos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `alumnos`
---
-
-LOCK TABLES `alumnos` WRITE;
-/*!40000 ALTER TABLE `alumnos` DISABLE KEYS */;
-/*!40000 ALTER TABLE `alumnos` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `carreras`
 --
 
@@ -62,6 +53,7 @@ CREATE TABLE `carreras` (
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(3500) NOT NULL,
   `objetivos` varchar(800) NOT NULL,
+  `ciudad` varchar(150) NOT NULL,
   `metas` varchar(800) NOT NULL,
   `relprof` varchar(200) NOT NULL,
   `empleosasp` varchar(250) NOT NULL,
@@ -70,15 +62,6 @@ CREATE TABLE `carreras` (
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `carreras`
---
-
-LOCK TABLES `carreras` WRITE;
-/*!40000 ALTER TABLE `carreras` DISABLE KEYS */;
-/*!40000 ALTER TABLE `carreras` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `maestros`
@@ -100,15 +83,6 @@ CREATE TABLE `maestros` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `maestros`
---
-
-LOCK TABLES `maestros` WRITE;
-/*!40000 ALTER TABLE `maestros` DISABLE KEYS */;
-/*!40000 ALTER TABLE `maestros` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `noticias`
 --
 
@@ -125,15 +99,6 @@ CREATE TABLE `noticias` (
   PRIMARY KEY (`idnoticia`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `noticias`
---
-
-LOCK TABLES `noticias` WRITE;
-/*!40000 ALTER TABLE `noticias` DISABLE KEYS */;
-/*!40000 ALTER TABLE `noticias` ENABLE KEYS */;
-UNLOCK TABLES;
 
 --
 -- Table structure for table `tesis`
@@ -155,15 +120,6 @@ CREATE TABLE `tesis` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
--- Dumping data for table `tesis`
---
-
-LOCK TABLES `tesis` WRITE;
-/*!40000 ALTER TABLE `tesis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tesis` ENABLE KEYS */;
-UNLOCK TABLES;
-
---
 -- Table structure for table `tutorestesis`
 --
 
@@ -179,15 +135,6 @@ CREATE TABLE `tutorestesis` (
   CONSTRAINT `idtesis` FOREIGN KEY (`idtesis`) REFERENCES `tesis` (`idtesis`) ON DELETE CASCADE ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
-
---
--- Dumping data for table `tutorestesis`
---
-
-LOCK TABLES `tutorestesis` WRITE;
-/*!40000 ALTER TABLE `tutorestesis` DISABLE KEYS */;
-/*!40000 ALTER TABLE `tutorestesis` ENABLE KEYS */;
-UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -198,4 +145,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-21 13:10:42
+-- Dump completed on 2024-03-24 22:23:15

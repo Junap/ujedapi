@@ -3,11 +3,13 @@
 //ejemplo: localhost:3000/alumnos/obtener
 
 import {Router} from 'express'
-import{actualizarAlumno, eliminarAlumno, insertarAlumno, todosAlumnos} from '../controllers/alumnos.controller.js'
+import{actualizarAlumno, eliminarAlumno, insertarAlumno, todosAlumnos, unAlumno} from '../controllers/alumnos.controller.js'
 
 const router = Router();
 
-router.get('/obtener', todosAlumnos)
+router.get('/obtenertodos', todosAlumnos)
+
+router.get('/obtener', unAlumno)
 
 router.post('/insertar', insertarAlumno)
 
