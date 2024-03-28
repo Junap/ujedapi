@@ -12,11 +12,11 @@ export const todosTutores = async (req, res) => {
 
 export const insertarTutor = async (req, res) => {
     try {
-        const { idtesis, nombre } = req.body
+        const { idtesis, nombre, escuela, gradoacademico } = req.body
 
         //Insercion de datos
-        const [result] = await pool.query(`INSERT INTO tutorestesis(idtesis, nombre) VALUES (?, ?)`,
-            [idtesis, nombre])
+        const [result] = await pool.query(`INSERT INTO tutorestesis(idtesis, nombre , escuela, gradoacademico) VALUES (?, ?, ?, ?)`,
+            [idtesis, nombre, escuela, gradoacademico])
         res.json({
             "Mensaje: ": `Se ha insertado ${result.affectedRows} tutor`,
             "idnuevo": result.insertId
@@ -31,9 +31,8 @@ export const insertarTutor = async (req, res) => {
 export const actualizarTutor = async (req, res) => {
     try {
 
-        const { idtesis, nombre, idtutor } = req.body
+        const { idtesis, nombre, escuela, gradoacademico, idtutor} = req.body
         const [existing] = await pool.query(`SELECT * FROM tesis WHERE idtesis = ?`, [idtesis])
-        console.log(existing)
 
         if (existing.length < 1) {
             return res.status(400).json({ "Error": `La tesis no existe.` })
@@ -42,9 +41,11 @@ export const actualizarTutor = async (req, res) => {
         //Insercion de datos
         const [result] = await pool.query(`UPDATE tutorestesis SET 
         idtesis = IFNULL(?, idtesis), 
-        nombre = IFNULL(?, nombre)
+        nombre = IFNULL(?, nombre), 
+        escuela = IFNULL(?, escuela), 
+        gradoacademico = IFNULL(?, gradoacademico)
         WHERE idtutor = ?`,
-            [idtesis, nombre, idtutor])
+            [idtesis, nombre, escuela, gradoacademico, idtutor])
         if (result.affectedRows > 0) {
             res.json({ "Mensaje: ": " Actualizacion realizada con Exito!" })
         }

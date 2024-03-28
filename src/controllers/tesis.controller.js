@@ -12,11 +12,11 @@ export const todasTesis = async (req, res) => {
 
 export const insertarTesis = async (req, res) => {
     try {
-        const { idalumno, nombre, generacion, enlace} = req.body
+        const { idalumno, nombre, generacion, enlace, director} = req.body
 
         //Insercion de datos
-        const [result] = await pool.query(`INSERT INTO tesis(idalumno, nombre, generacion, enlace) VALUES (?, ?, ?, ?)`,
-            [idalumno, nombre, generacion, enlace])
+        const [result] = await pool.query(`INSERT INTO tesis(idalumno, nombre, generacion, enlace, director) VALUES (?, ?, ?, ?, ?)`,
+            [idalumno, nombre, generacion, enlace, director])
         res.json({
             "Mensaje: ": `Se ha insertado ${result.affectedRows} tesis`,
             "idnuevo": result.insertId
@@ -31,7 +31,7 @@ export const insertarTesis = async (req, res) => {
 export const actualizarTesis = async (req, res) => {
     try {
         
-        const { idtesis, idalumno, nombre, generacion, enlace} = req.body
+        const { idtesis, idalumno, nombre, generacion, enlace,director} = req.body
         const [existing] = await pool.query(`SELECT * FROM alumnos WHERE idalumno = ?`, [idalumno])
 
         if (existing.length < 1){
@@ -43,9 +43,10 @@ export const actualizarTesis = async (req, res) => {
         idalumno = IFNULL(?, idalumno), 
         nombre = IFNULL(?, nombre),
         generacion = IFNULL(?, generacion),
-        enlace = IFNULL(?, enlace)
+        enlace = IFNULL(?, enlace),
+        director = IFNULL(?, director)
         WHERE idtesis = ?`,
-            [idalumno, nombre, generacion, enlace, idtesis])
+            [idalumno, nombre, generacion, enlace, director, idtesis])
             if (result.affectedRows > 0) {
                 res.json({ "Mensaje: ": " Actualizacion realizada con Exito!" })
             }

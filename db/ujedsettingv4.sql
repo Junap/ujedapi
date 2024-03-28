@@ -37,7 +37,7 @@ CREATE TABLE `alumnos` (
   UNIQUE KEY `matricula_UNIQUE` (`matricula`),
   KEY `idcarrera_idx` (`idcarrera`),
   CONSTRAINT `idcarrera` FOREIGN KEY (`idcarrera`) REFERENCES `carreras` (`idcarrera`) ON DELETE SET NULL ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,7 +60,7 @@ CREATE TABLE `carreras` (
   `duracion` varchar(40) NOT NULL,
   PRIMARY KEY (`idcarrera`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -113,10 +113,11 @@ CREATE TABLE `tesis` (
   `nombre` varchar(160) NOT NULL,
   `generacion` varchar(4) NOT NULL,
   `enlace` varchar(250) NOT NULL,
+  `director` varchar(165) NOT NULL,
   PRIMARY KEY (`idtesis`),
   KEY `idalumno_idx` (`idalumno`),
   CONSTRAINT `idalumno` FOREIGN KEY (`idalumno`) REFERENCES `alumnos` (`idalumno`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -130,10 +131,12 @@ CREATE TABLE `tutorestesis` (
   `idtutor` int NOT NULL AUTO_INCREMENT,
   `idtesis` int NOT NULL,
   `nombre` varchar(160) NOT NULL,
+  `escuela` varchar(160) NOT NULL,
+  `gradoacademico` varchar(100) NOT NULL,
   PRIMARY KEY (`idtutor`),
   KEY `idtesis_idx` (`idtesis`),
   CONSTRAINT `idtesis` FOREIGN KEY (`idtesis`) REFERENCES `tesis` (`idtesis`) ON DELETE CASCADE ON UPDATE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -145,4 +148,4 @@ CREATE TABLE `tutorestesis` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-03-24 22:23:15
+-- Dump completed on 2024-03-28 13:56:04
