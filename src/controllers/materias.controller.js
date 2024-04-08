@@ -10,6 +10,18 @@ export const todasMaterias = async (req, res) => {
 
 }
 
+//Obtener una materia por su ID
+export const unaMateria = async (req, res) => {
+    try {
+        const { idmateria } = req.body
+        const [result] = await pool.query('SELECT * FROM materias WHERE idmateria = ?', [idmateria])
+        res.json(result)
+    } catch (error) {
+        res.send(500).json({ "Error": ` ${error}` })
+    }
+
+}
+
 export const insertarMateria = async (req, res) => {
     try {
         const { idcarrera, nombre, semestre } = req.body

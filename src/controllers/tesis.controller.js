@@ -1,8 +1,21 @@
 import { pool } from '../db.js'
 
+//Obtener todas las tesis
 export const todasTesis = async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM tesis')
+        res.json(result)
+    } catch (error) {
+        res.send(500).json({ "Error": ` ${error}` })
+    }
+
+}
+
+//Obtener una tesis
+export const unaTesis = async (req, res) => {
+    try {
+        const { idtesis } = req.body
+        const [result] = await pool.query('SELECT * FROM tesis WHERE idtesis = ?', [idtesis])
         res.json(result)
     } catch (error) {
         res.send(500).json({ "Error": ` ${error}` })

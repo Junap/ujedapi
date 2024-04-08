@@ -3,13 +3,9 @@
 //ejemplo: localhost:3000/carreras/obtener
 
 import {Router} from 'express'
-import{todasCarreras, unaCarrera, insertarCarrera, actualizarCarrera, eliminarCarrera} from '../controllers/carreras.controller.js'
+import{insertarCarrera, actualizarCarrera, eliminarCarrera} from '../controllers/carreras.controller.js'
 
 const router = Router();
-
-router.get('/obtenertodos', todasCarreras)
-
-router.get('/obtener', unaCarrera)
 
 router.post('/insertar', insertarCarrera)
 

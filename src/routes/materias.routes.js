@@ -3,11 +3,9 @@
 //ejemplo: localhost:3000/materias/obtener
 
 import { Router } from 'express'
-import { todasMaterias, insertarMateria, actualizarMateria, eliminarMateria} from '../controllers/materias.controller.js'
+import { insertarMateria, actualizarMateria, eliminarMateria} from '../controllers/materias.controller.js'
 
 const router = Router();
-
-router.get('/obtener', todasMaterias)
 
 router.post('/insertar', insertarMateria)
 

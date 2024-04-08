@@ -1,5 +1,6 @@
 import { pool } from '../db.js'
 
+//Obtener todas las Carreras
 export const todasCarreras = async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM carreras')
@@ -10,10 +11,11 @@ export const todasCarreras = async (req, res) => {
 
 }
 
+//Obtener una carrera por su ID
 export const unaCarrera = async (req, res) => {
     try {
-       const { idc } = req.body;
-        const [result] = await pool.query('SELECT * FROM carreras WHERE idcarrera = ?',[idc])
+       const { idcarrera } = req.body;
+        const [result] = await pool.query('SELECT * FROM carreras WHERE idcarrera = ?',[idcarrera])
         if (result.length===0){
             return res.status(400).json({ "Error": `La carrera no existe.` })
         }
@@ -23,6 +25,7 @@ export const unaCarrera = async (req, res) => {
     }
 
 }
+
 
 export const insertarCarrera = async (req, res) => {
     try {
@@ -50,7 +53,7 @@ export const insertarCarrera = async (req, res) => {
 // idc = Id Carrera
 export const actualizarCarrera = async (req, res) => {
     try {
-        const { idc, area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion } = req.body
+        const { idcarrera, area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion } = req.body
         let [result] = await pool.query(`UPDATE carreras SET 
         area = IFNULL(?, area),
         nombre = IFNULL(?, nombre),
@@ -62,12 +65,12 @@ export const actualizarCarrera = async (req, res) => {
         empleosasp = IFNULL(?, empleosasp),
         duracion = IFNULL(?, duracion)
         WHERE idcarrera = ?`,
-            [area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion, idc])
+            [area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion, idcarrera])
         if (result.affectedRows > 0) {
             res.json({ "Mensaje: ": " Actualizacion realizada con Exito!" })
         }
         else {
-            res.json({ "Mensaje: ": ` No existe el registro ${idc}` })
+            res.json({ "Mensaje: ": ` No existe el registro ${idcarrera}` })
         }
     } catch (error) {
         res.status(500).json({ "Error": ` ${error}` })
@@ -77,13 +80,13 @@ export const actualizarCarrera = async (req, res) => {
 // idc = Id Carrera
 export const eliminarCarrera = async (req, res) => {
     try {
-        const { idc } = req.body
-        let [result] = await pool.query(`DELETE FROM carreras WHERE idcarrera = ?`, [idc])
+        const { idcarrera } = req.body
+        let [result] = await pool.query(`DELETE FROM carreras WHERE idcarrera = ?`, [idcarrera])
         if (result.affectedRows > 0) {
             res.json({ "Mensaje: ": ` Carrera eliminada con Exito!` })
         }
         else {
-            res.json({ "Mensaje: ": ` No existe la carrera con id: ${idc}` })
+            res.json({ "Mensaje: ": ` No existe la carrera con id: ${idcarrera}` })
         }
     } catch (error) {
         res.status(500).json({ "Error": ` ${error}` })

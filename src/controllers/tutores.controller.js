@@ -1,8 +1,22 @@
 import { pool } from '../db.js'
 
+//Obtener todos los tutores
+
 export const todosTutores = async (req, res) => {
     try {
         const [result] = await pool.query('SELECT * FROM tutorestesis')
+        res.json(result)
+    } catch (error) {
+        res.status(500).json({ "Error": ` ${error}` })
+    }
+
+}
+
+//Obtener un tutor por su ID
+export const unTutor = async (req, res) => {
+    try {
+        const { idtesis } = req.body
+        const [result] = await pool.query('SELECT * FROM tutorestesis WHERE idtesis = ?', [idtesis])
         res.json(result)
     } catch (error) {
         res.status(500).json({ "Error": ` ${error}` })

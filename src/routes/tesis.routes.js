@@ -3,11 +3,9 @@
 //ejemplo: localhost:3000/tesis/obtener
 
 import {Router} from 'express'
-import {todasTesis, insertarTesis, actualizarTesis, eliminarTesis} from '../controllers/tesis.controller.js'
+import { insertarTesis, actualizarTesis, eliminarTesis} from '../controllers/tesis.controller.js'
 
 const router = Router();
-
-router.get('/obtener', todasTesis)
 
 router.post('/insertar', insertarTesis)
 
