@@ -80,6 +80,38 @@ CREATE TABLE `carreras` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `imagenes`
+--
+
+DROP TABLE IF EXISTS `imagenes`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `imagenes` (
+  `idimagen` int NOT NULL AUTO_INCREMENT,
+  `url` varchar(150) NOT NULL,
+  PRIMARY KEY (`idimagen`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `imagenesnoti`
+--
+
+DROP TABLE IF EXISTS `imagenesnoti`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `imagenesnoti` (
+  `idimagen` int NOT NULL,
+  `idnoticia` int NOT NULL,
+  `principal` tinyint NOT NULL,
+  KEY `idnoticia_idx` (`idnoticia`),
+  KEY `idimagen_idx` (`idimagen`),
+  CONSTRAINT `idimagen` FOREIGN KEY (`idimagen`) REFERENCES `imagenes` (`idimagen`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `idnoticia` FOREIGN KEY (`idnoticia`) REFERENCES `noticias` (`idnoticia`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `maestros`
 --
 
@@ -127,10 +159,10 @@ CREATE TABLE `noticias` (
   `idnoticia` int NOT NULL AUTO_INCREMENT,
   `titulo` varchar(100) NOT NULL,
   `descorta` varchar(400) NOT NULL,
-  `descripcion` varchar(2700) NOT NULL,
-  `imagen` varchar(150) NOT NULL,
-  `fechapub` date NOT NULL,
-  PRIMARY KEY (`idnoticia`)
+  `descripcion` varchar(3000) NOT NULL,
+  `fechapub` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  PRIMARY KEY (`idnoticia`),
+  UNIQUE KEY `titulo_UNIQUE` (`titulo`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -182,4 +214,4 @@ CREATE TABLE `tutorestesis` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-07 18:16:23
+-- Dump completed on 2024-04-15 22:24:49

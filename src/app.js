@@ -16,7 +16,11 @@ import cors from 'cors'
 
 
 const app = express();
-app.use(cors())
+app.use(cors({
+    origin: ["http://localhost:3000"],
+    methods: ["POST", "GET", "PATCH", "DELETE"],
+    credentials: true
+}))
 
 app.use(session({
     secret: 'X^_o7XN-N)g=1)f$wCWUmyY2}Xg6&Bq7[AyDSrOqXAe{K!tL1u',
