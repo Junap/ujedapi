@@ -9,6 +9,9 @@ import rutasTesis from './routes/tesis.routes.js'
 import rutasTutores from './routes/tutores.routes.js'
 import rutasMaestros from './routes/maestros.routes.js'
 import rutasMaterias from './routes/materias.routes.js'
+import rutasImagenes from './routes/imagenes.routes.js'
+import rutasNoticias from './routes/noticias.routes.js'
+import rutasRelacionesN from './routes/imagenesnoti.routes.js'
 import cors from 'cors'
 
 
@@ -48,7 +51,9 @@ function isAuthenticated (req, res, next){
 //Uso de la funcion para autenticar la sesion del usuario
 app.use(isAuthenticated);
 
-
+app.use('/admin/noticias',rutasNoticias)
+app.use('/admin/relnotis',rutasRelacionesN)
+app.use('/admin/imagenes', rutasImagenes);
 app.use('/admin/carreras',rutasCarreras);
 app.use('/admin/alumnos',rutasAlumnos);
 app.use('/admin/tesis',rutasTesis);

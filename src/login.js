@@ -15,6 +15,14 @@ const saltRounds = 10
 //    res.sendFile(path.join(__dirname, 'public', 'login.html'));
 //})
 
+router.get('/check',(req,res)=>{
+    if( req.session.user ){
+        return res.json({valid: true,username: req.session.user})
+    }else{
+        return res.json({valid:false})
+    }
+})
+
 router.post('/registrar', async (req, res) => {
     try {
     const { username, password } = req.body;
@@ -49,10 +57,13 @@ router.post('/registrar', async (req, res) => {
 
               //redireccionar al homepage de admins 
               //res.redirect('/admin')
-              res.send('Hola admin')
+              //res.send('Hola admin')
             })
           })
 
+    }
+    else {
+        res.json({Login:false})
     }
         
     } catch (error) {
@@ -83,8 +94,8 @@ router.post('/iniciar', async (req, res) => {
                     req.session.save(function (err) {
                       if (err) return next(err)
                       //redireccionar al homepage de admins
-                      //res.redirect('/admin')
-                      res.send('Hola admin')
+                      res.json({Login:true, user: req.session.user})
+                      //res.send('Hola admin')
                     })
                   })
 
