@@ -21,7 +21,8 @@ export const subirFoto = async (req, res) => {
         //Todo salio correctamente
         try {
             //Guardamos el valor del url de la imagen
-            const urlimg = req.file.path
+            let urlimg = req.file.path
+            urlimg = urlimg.substring(12)
             //Insertamos el url en la tabla de imagenes
             const [si] = await pool.query(`INSERT INTO imagenes(url) VALUES (?)`, [urlimg])
             //Si todo sale bien, enviar un mensaje
