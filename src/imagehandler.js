@@ -1,5 +1,6 @@
 import multer from 'multer'
 import { FILESIZE } from './config.js'
+import {__dirname} from './app.js'
 
 import * as path from 'path'
 

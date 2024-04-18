@@ -13,7 +13,11 @@ import rutasImagenes from './routes/imagenes.routes.js'
 import rutasNoticias from './routes/noticias.routes.js'
 import rutasRelacionesN from './routes/imagenesnoti.routes.js'
 import cors from 'cors'
+import { fileURLToPath } from 'url'
+import path from 'path'
 
+const __filename = fileURLToPath(import.meta.url);
+export const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors({
@@ -34,6 +38,7 @@ app.use(session({
     }
 }));
 
+app.use('/uploads', express.static('./src/uploads',))
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 

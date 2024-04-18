@@ -7,9 +7,20 @@ import { todosTutores, unTutor} from '../controllers/tutores.controller.js'
 import {todasMaterias, unaMateria} from '../controllers/materias.controller.js'
 import {todasCarreras, unaCarrera} from '../controllers/carreras.controller.js'
 import {todasTesis, unaTesis} from '../controllers/tesis.controller.js'
+import {unaNoticia, todasNoticias, unaNoticiaTitulo} from '../controllers/noticias.controller.js'
 
 const router = Router();
 
+//Obtener noticia por id
+router.get('/noticias/obtener', unaNoticia)
+
+//Obtener noticia por su titulo
+router.get('/noticias/obtenerxtitulo', unaNoticiaTitulo)
+
+//Obtener todas las noticias
+router.get('/noticias/obtenertodas', todasNoticias)
+
+//Obtener todas las carreras
 router.get('/carreras/obtener', todasCarreras)
 
 router.get('/carreras/obtener1', unaCarrera)
