@@ -12,6 +12,9 @@ import rutasMaterias from './routes/materias.routes.js'
 import rutasImagenes from './routes/imagenes.routes.js'
 import rutasNoticias from './routes/noticias.routes.js'
 import rutasRelacionesN from './routes/imagenesnoti.routes.js'
+import rutasEscuelas from './routes/escuelas.routes.js'
+import rutasRelacionesCr from './routes/carreraesc.routes.js'
+import rutasEscuelasDirectorios from './routes/escuelas.directorios.routes.js'
 import cors from 'cors'
 import { fileURLToPath } from 'url'
 import path from 'path'
@@ -60,6 +63,9 @@ function isAuthenticated (req, res, next){
 //Uso de la funcion para autenticar la sesion del usuario
 app.use(isAuthenticated);
 
+app.use('/admin/relescuelas',rutasRelacionesCr);
+app.use('/admin/escuelas',rutasEscuelas)
+app.use('/admin/escuelas/dir',rutasEscuelasDirectorios)
 app.use('/admin/noticias',rutasNoticias)
 app.use('/admin/relnotis',rutasRelacionesN)
 app.use('/admin/imagenes', rutasImagenes);

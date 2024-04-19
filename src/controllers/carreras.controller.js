@@ -29,7 +29,7 @@ export const unaCarrera = async (req, res) => {
 
 export const insertarCarrera = async (req, res) => {
     try {
-        const { area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion } = req.body
+        const { nombre, descripcion, objetivos, metas, relprof, empleosasp, duracion } = req.body
 
         //Manejo de error "La carrera ya existe en la tabla"
         const [existing] = await pool.query(`SELECT * FROM carreras WHERE nombre = ?`, [nombre])
@@ -37,9 +37,9 @@ export const insertarCarrera = async (req, res) => {
             return res.status(400).json({ "Error": `La carrera ${nombre} ya existe en la tabla.` })
         }
         //Insercion de datos
-        const [result] = await pool.query(`INSERT INTO carreras(area, nombre, descripcion, objetivos,
-        ciudad, metas, relprof, empleosasp, duracion) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)`,
-            [area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion])
+        const [result] = await pool.query(`INSERT INTO carreras(nombre, descripcion, objetivos,
+        metas, relprof, empleosasp, duracion) VALUES (?, ?, ?, ?, ?, ?, ?)`,
+            [ nombre, descripcion, objetivos, metas, relprof, empleosasp, duracion])
         res.json({
             "Mensaje: ": `Se ha insertado ${result.affectedRows} carrera`,
             "idnuevo": result.insertId
@@ -50,22 +50,20 @@ export const insertarCarrera = async (req, res) => {
     }
 
 }
-// idc = Id Carrera
+
 export const actualizarCarrera = async (req, res) => {
     try {
-        const { idcarrera, area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion } = req.body
-        let [result] = await pool.query(`UPDATE carreras SET 
-        area = IFNULL(?, area),
+        const { idcarrera, nombre, descripcion, objetivos, metas, relprof, empleosasp, duracion } = req.body
+        const [result] = await pool.query(`UPDATE carreras SET 
         nombre = IFNULL(?, nombre),
         descripcion = IFNULL(?, descripcion),
         objetivos = IFNULL(?, objetivos),
-        ciudad = IFNULL(?, ciudad),
         metas = IFNULL(?, metas),
         relprof = IFNULL(?, relprof),
         empleosasp = IFNULL(?, empleosasp),
         duracion = IFNULL(?, duracion)
         WHERE idcarrera = ?`,
-            [area, nombre, descripcion, objetivos, ciudad, metas, relprof, empleosasp, duracion, idcarrera])
+            [ nombre, descripcion, objetivos, metas, relprof, empleosasp, duracion, idcarrera])
         if (result.affectedRows > 0) {
             res.json({ "Mensaje: ": " Actualizacion realizada con Exito!" })
         }
@@ -77,11 +75,11 @@ export const actualizarCarrera = async (req, res) => {
     }
 
 }
-// idc = Id Carrera
+
 export const eliminarCarrera = async (req, res) => {
     try {
         const { idcarrera } = req.body
-        let [result] = await pool.query(`DELETE FROM carreras WHERE idcarrera = ?`, [idcarrera])
+        const [result] = await pool.query(`DELETE FROM carreras WHERE idcarrera = ?`, [idcarrera])
         if (result.affectedRows > 0) {
             res.json({ "Mensaje: ": ` Carrera eliminada con Exito!` })
         }

@@ -91,7 +91,7 @@ export const actualizarNoticia = async (req, res) => {
             //Si el titulo de la actual noticia es el mismo, insertar sin problema
             const [existingt] = await pool.query(`SELECT * FROM noticias WHERE titulo = ? AND idnoticia = ?`, [titulo, idnoticia])
             if (existingt.length === 1){
-                console.log('check1')
+
                     //Insercion de datos
                 const [result] = await pool.query(`UPDATE noticias SET 
                 titulo = IFNULL(?, titulo), 
@@ -107,7 +107,6 @@ export const actualizarNoticia = async (req, res) => {
                 res.json({ "Mensaje: ": ` No existe la noticia.` })
             }
             }else{
-                console.log('check2')
                 //Manejo de titulos iguales
                 const [existings] = await pool.query(`SELECT * FROM noticias WHERE titulo = ?`, [titulo])
                 if (existings.length > 0){

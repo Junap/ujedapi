@@ -8,6 +8,9 @@ import {todasMaterias, unaMateria} from '../controllers/materias.controller.js'
 import {todasCarreras, unaCarrera} from '../controllers/carreras.controller.js'
 import {todasTesis, unaTesis} from '../controllers/tesis.controller.js'
 import {unaNoticia, todasNoticias, unaNoticiaTitulo} from '../controllers/noticias.controller.js'
+import {todasEscuelas, unaEscuela, escuelasporAreayCiudad} from '../controllers/escuelas.controller.js'
+import {directoriosEscuela} from '../controllers/escuelas.directorios.controller.js'
+
 
 const router = Router();
 
@@ -25,6 +28,15 @@ router.get('/carreras/obtener', todasCarreras)
 
 router.get('/carreras/obtener1', unaCarrera)
 
+router.get('/escuelas/obtener', todasEscuelas)
+
+router.get('/escuelas/obtener1', unaEscuela)
+
+router.get('/escuelas/obtenerAC', escuelasporAreayCiudad)
+
+//Obtener todos los directorios de una escuela determinada
+router.get('/escuelas/dir/obtener', directoriosEscuela)
+
 router.get('/materias/obtener', todasMaterias)
 
 router.get('/materias/obtener1', unaMateria)
@@ -36,5 +48,6 @@ router.get('/tesis/obtener1', unaTesis)
 router.get('/tutores/obtener', todosTutores)
 
 router.get('/tutores/obtener1', unTutor)
+
 
 export default router

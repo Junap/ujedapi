@@ -57,6 +57,23 @@ CREATE TABLE `alumnos` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `carreraesc`
+--
+
+DROP TABLE IF EXISTS `carreraesc`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `carreraesc` (
+  `idcarrera` int NOT NULL,
+  `idescuela` int NOT NULL,
+  KEY `idcarreraEsc_idx` (`idcarrera`),
+  KEY `idescuelaCar_idx` (`idescuela`),
+  CONSTRAINT `idcarreraEsc` FOREIGN KEY (`idcarrera`) REFERENCES `carreras` (`idcarrera`) ON DELETE CASCADE ON UPDATE CASCADE,
+  CONSTRAINT `idescuelaCar` FOREIGN KEY (`idescuela`) REFERENCES `escuelas` (`idescuela`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `carreras`
 --
 
@@ -65,17 +82,60 @@ DROP TABLE IF EXISTS `carreras`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `carreras` (
   `idcarrera` int NOT NULL AUTO_INCREMENT,
-  `area` varchar(80) NOT NULL,
   `nombre` varchar(100) NOT NULL,
   `descripcion` varchar(3500) NOT NULL,
   `objetivos` varchar(800) NOT NULL,
-  `ciudad` varchar(150) NOT NULL,
   `metas` varchar(800) NOT NULL,
-  `relprof` varchar(200) NOT NULL,
-  `empleosasp` varchar(250) NOT NULL,
+  `relprof` varchar(800) NOT NULL,
+  `empleosasp` varchar(800) NOT NULL,
   `duracion` varchar(40) NOT NULL,
   PRIMARY KEY (`idcarrera`),
   UNIQUE KEY `nombre_UNIQUE` (`nombre`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `directorios`
+--
+
+DROP TABLE IF EXISTS `directorios`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `directorios` (
+  `idescuela` int NOT NULL,
+  `puesto` varchar(50) NOT NULL,
+  `nombre` varchar(160) NOT NULL,
+  KEY `idescuelaDir_idx` (`idescuela`),
+  CONSTRAINT `idescuelaDir` FOREIGN KEY (`idescuela`) REFERENCES `escuelas` (`idescuela`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Table structure for table `escuelas`
+--
+
+DROP TABLE IF EXISTS `escuelas`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `escuelas` (
+  `idescuela` int NOT NULL AUTO_INCREMENT,
+  `ciudad` varchar(100) NOT NULL,
+  `area` varchar(80) NOT NULL,
+  `nombre` varchar(160) NOT NULL,
+  `abreviatura` varchar(15) NOT NULL,
+  `descripcion` varchar(1000) DEFAULT NULL,
+  `direccion` varchar(250) DEFAULT NULL,
+  `urlmapa` varchar(220) NOT NULL,
+  `urlweb` varchar(220) DEFAULT NULL,
+  `contacto` varchar(160) NOT NULL,
+  `mision` varchar(800) NOT NULL,
+  `vision` varchar(800) NOT NULL,
+  `objetivos` varchar(800) DEFAULT NULL,
+  `bolsatrabajo` varchar(300) DEFAULT NULL,
+  `urlbotr` varchar(220) DEFAULT NULL,
+  `servicios` varchar(1000) DEFAULT NULL,
+  PRIMARY KEY (`idescuela`),
+  UNIQUE KEY `abreviatura_UNIQUE` (`abreviatura`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -214,4 +274,4 @@ CREATE TABLE `tutorestesis` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-15 22:24:49
+-- Dump completed on 2024-04-19  0:24:05
