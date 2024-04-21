@@ -1,9 +1,12 @@
 import { pool } from '../db.js'
 
 //Obtener todas las Carreras
+//Nota: Esta ruta tambien trae el area y la ciudad de la escuela o escuelas en la que se encuentran
 export const todasCarreras = async (req, res) => {
     try {
-        const [result] = await pool.query('SELECT * FROM carreras')
+        const [result] = await pool.query(`SELECT carreras.*, escuelas.area, escuelas.ciudad FROM carreras 
+        JOIN carreraesc ON carreras.idcarrera = carreraesc.idcarrera
+        JOIN escuelas ON carreraesc.idescuela = escuelas.idescuela`)
         res.json(result)
     } catch (error) {
         res.status(500).json({ "Error": ` ${error}` })
@@ -12,10 +15,14 @@ export const todasCarreras = async (req, res) => {
 }
 
 //Obtener una carrera por su ID
+//Nota: Esta ruta tambien trae el area y la ciudad de la escuela o escuelas en la que se encuentran
 export const unaCarrera = async (req, res) => {
     try {
        const { idcarrera } = req.body;
-        const [result] = await pool.query('SELECT * FROM carreras WHERE idcarrera = ?',[idcarrera])
+        const [result] = await pool.query(`SELECT carreras.*, escuelas.area, escuelas.ciudad FROM carreras 
+        JOIN carreraesc ON carreras.idcarrera = carreraesc.idcarrera
+        JOIN escuelas ON carreraesc.idescuela = escuelas.idescuela
+        WHERE carreras.idcarrera = ?`,[idcarrera])
         if (result.length===0){
             return res.status(400).json({ "Error": `La carrera no existe.` })
         }
