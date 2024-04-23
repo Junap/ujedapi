@@ -227,6 +227,24 @@ CREATE TABLE `noticias` (
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
+-- Table structure for table `publicaciones`
+--
+
+DROP TABLE IF EXISTS `publicaciones`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!50503 SET character_set_client = utf8mb4 */;
+CREATE TABLE `publicaciones` (
+  `idpublicacion` int NOT NULL AUTO_INCREMENT,
+  `nombre` varchar(160) NOT NULL,
+  `categoria` varchar(70) NOT NULL,
+  `urlpdf` varchar(150) NOT NULL,
+  `urlportada` varchar(150) DEFAULT NULL,
+  `fecha` varchar(20) NOT NULL,
+  PRIMARY KEY (`idpublicacion`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
 -- Table structure for table `tesis`
 --
 
@@ -274,4 +292,4 @@ CREATE TABLE `tutorestesis` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-04-19  0:24:05
+-- Dump completed on 2024-04-23 16:05:01

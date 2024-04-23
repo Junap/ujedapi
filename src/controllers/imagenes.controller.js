@@ -46,7 +46,7 @@ export const borrarFoto = async (req, res) => {
         if (urlimagen.length < 1) {
             throw new Error("Esta imagen no existe en la base de datos")
         }
-        urlimagen = urlimagen[0].url
+        urlimagen = `src\\uploads\\`+urlimagen[0].url
         //Eliminar la imagen del servidor
         fs.unlink(urlimagen, async (err) => {
             if (err) {

@@ -10,6 +10,7 @@ import {todasTesis, unaTesis} from '../controllers/tesis.controller.js'
 import {unaNoticia, todasNoticias, unaNoticiaTitulo} from '../controllers/noticias.controller.js'
 import {todasEscuelas, unaEscuela, escuelasporAreayCiudad} from '../controllers/escuelas.controller.js'
 import {directoriosEscuela} from '../controllers/escuelas.directorios.controller.js'
+import { PublicacionesxCategoria } from '../controllers/publicaciones.controller.js'
 
 
 const router = Router();
@@ -26,28 +27,41 @@ router.get('/noticias/obtenertodas', todasNoticias)
 //Obtener todas las carreras
 router.get('/carreras/obtener', todasCarreras)
 
+//Ruta para conseguir una sola carrera (requiere su id)
 router.get('/carreras/obtener1', unaCarrera)
 
+//Ruta para conseguir todas las escuelas
 router.get('/escuelas/obtener', todasEscuelas)
 
+//Ruta para conseguir una sola escuela (requiere su id)
 router.get('/escuelas/obtener1', unaEscuela)
 
+//Ruta para conseguir las escuelas en determinada area y ciudad (requiere area y ciudad)
 router.get('/escuelas/obtenerAC', escuelasporAreayCiudad)
 
 //Obtener todos los directorios de una escuela determinada
 router.get('/escuelas/dir/obtener', directoriosEscuela)
 
+//Ruta para conseguir todas las materias
 router.get('/materias/obtener', todasMaterias)
 
+//Ruta para conseguir una sola materia (requiere su id)
 router.get('/materias/obtener1', unaMateria)
 
+//Ruta para conseguir todas las tesis
 router.get('/tesis/obtener', todasTesis)
 
+//Ruta para conseguir una tesis (requiere su id)
 router.get('/tesis/obtener1', unaTesis)
 
+//Ruta para conseguir todos los tutores
 router.get('/tutores/obtener', todosTutores)
 
+//Ruta para conseguir un solo tutor (requiere su id)
 router.get('/tutores/obtener1', unTutor)
+
+//Ruta para conseguir todas las publicaciones por categoria (requiere la categoria en el req.body)
+router.get('/publicaciones/obtener', PublicacionesxCategoria)
 
 
 export default router

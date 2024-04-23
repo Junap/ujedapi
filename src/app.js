@@ -15,8 +15,10 @@ import rutasRelacionesN from './routes/imagenesnoti.routes.js'
 import rutasEscuelas from './routes/escuelas.routes.js'
 import rutasRelacionesCr from './routes/carreraesc.routes.js'
 import rutasEscuelasDirectorios from './routes/escuelas.directorios.routes.js'
+import rutasPublicaciones from './routes/publicaciones.routes.js'
 import cors from 'cors'
 import { fileURLToPath } from 'url'
+import {SECRET} from './config.js'
 import path from 'path'
 
 const __filename = fileURLToPath(import.meta.url);
@@ -30,7 +32,7 @@ app.use(cors({
 }))
 
 app.use(session({
-    secret: 'X^_o7XN-N)g=1)f$wCWUmyY2}Xg6&Bq7[AyDSrOqXAe{K!tL1u',
+    secret: SECRET,
     resave: false,
     saveUninitialized: true,
     cookie: {
@@ -41,9 +43,14 @@ app.use(session({
     }
 }));
 
+//Middleware para servir imagenes de la galeria
 app.use('/uploads', express.static('./src/uploads',))
+
+//Middleware para servir publicaciones
+app.use('/publicaciones', express.static('./src/uploads/publications',))
+
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({extended: true}));
 
 //Usa de la logica del inicio de sesion
 app.use(login);
@@ -63,6 +70,7 @@ function isAuthenticated (req, res, next){
 //Uso de la funcion para autenticar la sesion del usuario
 app.use(isAuthenticated);
 
+app.use('/admin/publicaciones', rutasPublicaciones)
 app.use('/admin/relescuelas',rutasRelacionesCr);
 app.use('/admin/escuelas',rutasEscuelas)
 app.use('/admin/escuelas/dir',rutasEscuelasDirectorios)

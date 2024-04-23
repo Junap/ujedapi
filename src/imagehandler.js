@@ -1,5 +1,5 @@
 import multer from 'multer'
-import { FILESIZE } from './config.js'
+import { IMGSIZE } from './config.js'
 import {__dirname} from './app.js'
 
 import * as path from 'path'
@@ -20,7 +20,7 @@ export const upload = multer({
     //Configuracion del tamaño de imagen
   storage: storage,
   limits: {
-    fileSize: FILESIZE * 1024 * 1024,
+    fileSize: IMGSIZE * 1024 * 1024,
 
   },
   fileFilter: function (req, file, cb) {
