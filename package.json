@@ -5,6 +5,7 @@
   "description": "aplicacion para el manejo de datos de las diferentes carreras de la UJED",
   "main": "index.js",
   "scripts": {
+    "start" : "node src/index.js",
     "test": "nodemon src/index.js"
   },
   "keywords": [

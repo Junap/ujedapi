@@ -5,15 +5,6 @@ import { pool } from './db.js'
 const router = Router()
 const saltRounds = 10
 
-//Ejemplos de como se pueden redireccionar a otras paginas con una ruta:
-
-//router.get('/register', (req, res) => {
-//    res.sendFile(path.join(__dirname, 'public', 'register.html'));
-//})
-
-//router.get('/login', (req, res) => {
-//    res.sendFile(path.join(__dirname, 'public', 'login.html'));
-//})
 
 router.get('/check',(req,res)=>{
     if( req.session.user ){

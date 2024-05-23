@@ -3,6 +3,7 @@ import session from 'express-session'
 import express from 'express'
 import rutasPublicas from './routes/publicgets.routes.js'
 import login from './login.js'
+import admindeleter from './admindeleter.js'
 import rutasCarreras from './routes/carreras.routes.js'
 import rutasAlumnos from './routes/alumnos.routes.js'
 import rutasTesis from './routes/tesis.routes.js'
@@ -26,6 +27,7 @@ export const __dirname = path.dirname(__filename);
 
 const app = express();
 app.use(cors({
+    //Configurar para el sitio donde se hostee este servidor
     origin: ["http://localhost:3000"],
     methods: ["POST", "GET", "PATCH", "DELETE"],
     credentials: true
@@ -70,6 +72,7 @@ function isAuthenticated (req, res, next){
 //Uso de la funcion para autenticar la sesion del usuario
 app.use(isAuthenticated);
 
+app.use('/admin',admindeleter)
 app.use('/admin/publicaciones', rutasPublicaciones)
 app.use('/admin/relescuelas',rutasRelacionesCr);
 app.use('/admin/escuelas',rutasEscuelas)

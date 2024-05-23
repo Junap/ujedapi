@@ -1,10 +1,8 @@
 import multer from 'multer'
 import { FILESIZE, IMGSIZE } from './config.js'
 import {__dirname} from './app.js'
-import { pool } from './db.js'
-
 import * as path from 'path'
-import { type } from 'os'
+
 
 const filestorage = multer.diskStorage({
   destination: function (req, file, cb) {
@@ -13,8 +11,7 @@ const filestorage = multer.diskStorage({
   },
   filename: function (req, file, cb) {
     const {categoria} = req.body
-    const categfinal = categoria.replace(/ /g, "-");
-    const extension = path.extname(file.originalname);
+    const categfinal = categoria.replace(/ /g, "-");    
     const uniqueSuffix = Math.floor(Math.random() * 900000) + 100000;
     cb(null, `${uniqueSuffix}${categfinal}-${file.originalname}`)
   }

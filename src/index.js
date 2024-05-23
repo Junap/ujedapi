@@ -1,5 +1,5 @@
 //Punto de entrada de el servidor
-//usar comando de prueba para ejecutar: npm run test
+//usar comando para ejecutar: npm run start
 import app from './app.js'
 import {PORT} from './config.js'
 

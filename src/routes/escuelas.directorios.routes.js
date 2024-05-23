@@ -1,7 +1,9 @@
-//Este archivo de rutas es una extension de las rutas para escuelas, el cual maneja los directorios de las mismas
+//Este archivo de rutas es una extension de las rutas para 
+//escuelas, el cual maneja los directorios de las mismas
 import {Router} from 'express'
 
-import {insertarDirectorio, eliminarDirectorios, eliminarPuesto} from '../controllers/escuelas.directorios.controller.js'
+import {insertarDirectorio, eliminarDirectorios,
+ eliminarPuesto} from '../controllers/escuelas.directorios.controller.js'
 
 const router = Router()
 
